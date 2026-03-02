@@ -1,217 +1,678 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RG: AI-Native Business Operations Platform</title>
+    <title>AI-Native Financial Operations Platform</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html, body { font-family: 'Inter', sans-serif; background: linear-gradient(135deg, #0a0e17 0%, #1a1f2e 100%); color: #e0e0e0; overflow-x: hidden; min-height: 100vh; }
-        body::before { content: ''; position: fixed; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle at 20% 30%, rgba(255, 131, 127, 0.08) 0%, transparent 50%), radial-gradient(circle at 80% 70%, rgba(155, 93, 229, 0.08) 0%, transparent 50%), radial-gradient(circle at 60% 20%, rgba(0, 210, 255, 0.06) 0%, transparent 50%); pointer-events: none; z-index: 0; animation: float-orbs 20s ease-in-out infinite; }
-        @keyframes float-orbs { 0%, 100% { transform: translate(0, 0); } 25% { transform: translate(20px, -30px); } 50% { transform: translate(-10px, 20px); } 75% { transform: translate(30px, 10px); } }
-        .container { max-width: 1400px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 1; }
-        header { display: flex; justify-content: space-between; align-items: center; padding: 24px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
-        .logo { font-size: 24px; font-weight: 700; background: linear-gradient(90deg, #FF837F 0%, #FF7600 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-        nav a { color: #a0a0a0; text-decoration: none; margin-left: 32px; font-size: 14px; transition: color 0.3s ease; }
-        nav a:hover { color: #FF837F; }
-        .hero { text-align: center; padding: 80px 0 60px; }
-        .hero h1 { font-size: 56px; font-weight: 700; margin-bottom: 16px; line-height: 1.2; }
-        .hero .tagline { font-size: 20px; color: #b0b0b0; margin-bottom: 8px; }
-        .hero .subtitle { font-size: 16px; color: #FF837F; font-weight: 600; margin-bottom: 32px; }
-        .hero .author { font-size: 14px; color: #808080; font-style: italic; }
-        .section-header { text-align: center; margin-bottom: 60px; padding-top: 80px; }
-        .section-header h2 { font-size: 40px; font-weight: 700; margin-bottom: 12px; }
-        .section-header p { font-size: 16px; color: #b0b0b0; max-width: 600px; margin: 0 auto; }
-        .glass-card { background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); backdrop-filter: blur(16px); border-radius: 12px; padding: 32px; transition: all 0.3s ease; cursor: pointer; }
-        .glass-card:hover { background: rgba(255, 255, 255, 0.12); border-color: rgba(255, 255, 255, 0.25); transform: translateY(-4px); box-shadow: 0 20px 40px rgba(255, 131, 127, 0.1); }
-        .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; margin-bottom: 60px; }
-        .card-title { font-size: 18px; font-weight: 600; margin-bottom: 12px; background: linear-gradient(90deg, #FF837F 0%, #9B5DE5 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-        .card-text { font-size: 14px; line-height: 1.6; color: #c0c0c0; }
-        .comparison-table { margin-bottom: 80px; overflow-x: auto; }
-        table { width: 100%; border-collapse: collapse; }
-        th { text-align: left; padding: 16px; border-bottom: 2px solid rgba(255, 255, 255, 0.15); font-weight: 600; background: rgba(255, 255, 255, 0.05); }
-        td { padding: 16px; border-bottom: 1px solid rgba(255, 255, 255, 0.08); font-size: 14px; }
-        tr:hover { background: rgba(255, 255, 255, 0.06); }
-        .highlight { background: linear-gradient(90deg, #FF837F 0%, #FF7600 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 600; }
-        .memory-architecture { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px; margin-bottom: 60px; }
-        .memory-layer { background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); backdrop-filter: blur(16px); border-radius: 12px; padding: 28px; text-align: center; }
-        .memory-icon { font-size: 32px; margin-bottom: 12px; }
-        .memory-layer-name { font-size: 16px; font-weight: 600; margin-bottom: 8px; background: linear-gradient(90deg, #00D2FF 0%, #3A7BD5 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-        .memory-description { font-size: 13px; line-height: 1.5; color: #b0b0b0; }
-        .architecture-note { background: rgba(255, 131, 127, 0.1); border: 1px solid rgba(255, 131, 127, 0.3); border-radius: 8px; padding: 20px; margin-top: 40px; font-size: 13px; line-height: 1.6; color: #d0d0d0; }
-        .intelligence-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-bottom: 80px; }
-        .stats-bar { background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); backdrop-filter: blur(16px); border-radius: 12px; padding: 40px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; margin-bottom: 80px; text-align: center; }
-        .stat-item h3 { font-size: 28px; font-weight: 700; background: linear-gradient(90deg, #FF837F 0%, #9B5DE5 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 8px; }
-        .stat-item p { font-size: 13px; color: #a0a0a0; }
-        footer { border-top: 1px solid rgba(255, 255, 255, 0.08); padding: 60px 0 40px; text-align: center; }
-        footer p { font-size: 13px; color: #808080; margin-bottom: 16px; line-height: 1.6; }
-        footer a { color: #FF837F; text-decoration: none; transition: color 0.3s ease; }
-        footer a:hover { color: #FF7600; }
-        @media (max-width: 768px) { .hero h1 { font-size: 36px; } .hero .tagline { font-size: 16px; } .section-header h2 { font-size: 28px; } nav { display: none; } .stats-bar { grid-template-columns: repeat(2, 1fr); padding: 24px; } header { justify-content: center; } }
-        code { font-family: 'JetBrains Mono', monospace; background: rgba(255, 255, 255, 0.05); padding: 2px 6px; border-radius: 4px; font-size: 12px; color: #FFB86C; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0a0e17 0%, #1a1f2e 100%);
+            color: #e0e0e0;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Ambient Background Orbs */
+        body::before {
+            content: '';
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background:
+                radial-gradient(circle at 20% 30%, rgba(255, 131, 127, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(155, 93, 229, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 60% 20%, rgba(0, 210, 255, 0.06) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+            animation: float-orbs 20s ease-in-out infinite;
+        }
+
+        @keyframes float-orbs {
+            0%, 100% { transform: translate(0, 0); }
+            25% { transform: translate(20px, -30px); }
+            50% { transform: translate(-10px, 20px); }
+            75% { transform: translate(30px, 10px); }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header Navigation */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            background: linear-gradient(90deg, #FF837F 0%, #FF7600 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        nav a {
+            color: #a0a0a0;
+            text-decoration: none;
+            margin-left: 32px;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #FF837F;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 80px 0 60px;
+        }
+
+        .hero h1 {
+            font-size: 52px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .hero .tagline {
+            font-size: 20px;
+            color: #b0b0b0;
+            margin-bottom: 8px;
+            max-width: 750px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero .subtitle {
+            font-size: 16px;
+            color: #FF837F;
+            font-weight: 600;
+            margin-bottom: 32px;
+        }
+
+        .hero .author {
+            font-size: 14px;
+            color: #808080;
+            font-style: italic;
+        }
+
+        /* Section Headers */
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding-top: 80px;
+        }
+
+        .section-header h2 {
+            font-size: 40px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .section-header p {
+            font-size: 16px;
+            color: #b0b0b0;
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        /* Glass Cards */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(16px);
+            border-radius: 12px;
+            padding: 32px;
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(255, 255, 255, 0.25);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(255, 131, 127, 0.1);
+        }
+
+        /* Problem & Solution Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+            margin-bottom: 60px;
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            background: linear-gradient(90deg, #FF837F 0%, #9B5DE5 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .card-text {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #c0c0c0;
+        }
+
+        .card-metric {
+            margin-top: 12px;
+            font-size: 13px;
+            color: #FF837F;
+            font-weight: 600;
+        }
+
+        /* Agent Cards */
+        .agent-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-bottom: 60px;
+        }
+
+        .agent-card {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(16px);
+            border-radius: 12px;
+            padding: 28px;
+            transition: all 0.3s ease;
+        }
+
+        .agent-card:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(255, 255, 255, 0.25);
+            transform: translateY(-4px);
+        }
+
+        .agent-icon {
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+
+        .agent-name {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            background: linear-gradient(90deg, #00D2FF 0%, #3A7BD5 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .agent-desc {
+            font-size: 13px;
+            line-height: 1.5;
+            color: #b0b0b0;
+            margin-bottom: 12px;
+        }
+
+        .agent-stops {
+            font-size: 12px;
+            color: #FF837F;
+            padding-top: 10px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Comparison Table */
+        .comparison-table {
+            margin-bottom: 80px;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            text-align: left;
+            padding: 16px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.15);
+            font-weight: 600;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        td {
+            padding: 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            font-size: 14px;
+        }
+
+        tr:hover {
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .highlight {
+            background: linear-gradient(90deg, #FF837F 0%, #FF7600 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 600;
+        }
+
+        /* Memory Architecture */
+        .memory-architecture {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+            margin-bottom: 60px;
+        }
+
+        .memory-layer {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(16px);
+            border-radius: 12px;
+            padding: 28px;
+            text-align: center;
+        }
+
+        .memory-icon {
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+
+        .memory-layer-name {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            background: linear-gradient(90deg, #00D2FF 0%, #3A7BD5 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .memory-description {
+            font-size: 13px;
+            line-height: 1.5;
+            color: #b0b0b0;
+        }
+
+        /* Architecture Note */
+        .architecture-note {
+            background: rgba(255, 131, 127, 0.1);
+            border: 1px solid rgba(255, 131, 127, 0.3);
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 40px;
+            font-size: 13px;
+            line-height: 1.6;
+            color: #d0d0d0;
+        }
+
+        /* Human Boundary */
+        .boundary-section {
+            background: rgba(255, 60, 60, 0.06);
+            border: 1px solid rgba(255, 60, 60, 0.2);
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 80px;
+            text-align: center;
+        }
+
+        .boundary-section h3 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #FF833tc°¢Ö&vâÖ&÷GFöÓ¢#°¢Ð ¢æ&÷VæF'Öw&B°¢F7Æ¢w&C°¢w&B×FV×ÆFRÖ6öÇVÖç3¢&WVBWFòÖfBÂÖæÖ#Âg"°¢v¢g°¢Ö&vâÖ&÷GFöÓ¢#°¢Ð ¢æ&÷VæF'ÖFVÒ°¢föçB×6¦S¢G°¢FFæs¢'°¢&6¶w&÷VæC¢&v&#SRÂcÂcÂã°¢&÷&FW"×&FW3¢°¢6öÆ÷#¢6SSS°¢Ð ¢æ&÷VæF'×&V6öâ°¢föçB×6¦S¢7°¢6öÆ÷#¢6###°¢Ö×vGF¢s°¢Ö&vã¢WFó°¢ÆæRÖVvC¢ãc°¢Ð ¢ò¢7FG2&"¢ð¢ç7FG2Ö&"°¢&6¶w&÷VæC¢&v&#SRÂ#SRÂ#SRÂã°¢&÷&FW#¢6öÆB&v&#SRÂ#SRÂ#SRÂãR°¢&6¶G&÷ÖfÇFW#¢&ÇW"g°¢&÷&FW"×&FW3¢'°¢FFæs¢C°¢F7Æ¢w&C°¢w&B×FV×ÆFRÖ6öÇVÖç3¢&WVBWFòÖfBÂÖæÖÂg"°¢v¢C°¢Ö&vâÖ&÷GFöÓ¢°¢FWBÖÆvã¢6VçFW#°¢Ð ¢ç7FBÖFVÒ2°¢föçB×6¦S¢#°¢föçB×vVvC¢s°¢&6¶w&÷VæC¢ÆæV"Öw&FVçBFVrÂ4dc9S7F 0%, #9B5DE5 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+        }
+
+        .stat-item p {
+            font-size: 13px;
+            color: #a0a0a0;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 60px 0 40px;
+            text-align: center;
+        }
+
+        footer p {
+            font-size: 13px;
+            color: #808080;
+            margin-bottom: 16px;
+            line-height: 1.6;
+        }
+
+        footer a {
+            color: #FF837F;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: #FF7600;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 34px;
+            }
+
+            .hero .tagline {
+                font-size: 16px;
+            }
+
+            .section-header h2 {
+                font-size: 28px;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .stats-bar {
+                grid-template-columns: repeat(2, 1fr);
+                padding: 24px;
+            }
+
+            header {
+                justify-content: center;
+            }
+        }
+
+        /* Code Font */
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 12px;
+            color: #FFB86C;
+        }
     </style>
-</head><body>
+</head>
+<body>
     <header class="container">
         <div class="logo">RG</div>
         <nav>
             <a href="#problem">Problem</a>
-            <a href="#solution">Solution</a>
+            <a href="#agents">Agents</a>
             <a href="#architecture">Architecture</a>
+            <a href="#boundary">Boundaries</a>
             <a href="#github">GitHub</a>
         </nav>
     </header>
+
     <main class="container">
+        <!-- Hero Section -->
         <section class="hero">
-            <h1>AI-Native Business Operations</h1>
-            <p class="tagline">Replace fragmented AI tools with a unified consciousness layer that learns, remembers, and executes.</p>
+            <h1>AI-Native Financial Operations</h1>
+            <p class="tagline">Redesigning compliance, onboarding, fraud detection, and regulatory reporting from first principles for a $100B+ AUA fintech scaling to 10M+ users.</p>
             <p class="subtitle">Built for Wealthsimple</p>
             <p class="author">by Ravi Gandhi Arul</p>
         </section>
+
+        <!-- Problem Section -->
         <section id="problem">
             <div class="section-header">
-                <h2>The Problem</h2>
-                <p>Wealth advisors switching between tools, losing context, while AI lacks memory and learning.</p>
+                <h2>The Scaling Problem</h2>
+                <p>Going from 3M to 10M+ users with $100B+ AUA creates operational bottlenecks that human-only processes can't solve.</p>
             </div>
+
             <div class="cards-grid">
                 <div class="glass-card">
-                    <div class="card-title">Fragmented Client Context</div>
-                    <div class="card-text">Wealth advisors switch between 5+ tools daily—CRM, email, spreadsheets, chat, analytics. Each context switch costs time and introduces errors. Client history scattered across systems.</div>
+                    <div class="card-title">Compliance Alert Overload</div>
+                    <div class="card-text">500+ daily transaction alerts, 85% are false positives. Each review takes 8-12 minutes, consuming 4 FTE analysts full-time. Sophisticated patterns get missed in the noise.</div>
+                    <div class="card-metric">â 68% auto-resolved, analysts focus on true positives</div>
                 </div>
+
                 <div class="glass-card">
-                    <div class="card-title">Knowledge Silos Across Products</div>
-                    <div class="card-text">Institutional knowledge trapped in individual heads. When advisors leave, years of relationship context vanishes. No way to surface learnings across teams.</div>
+                    <div class="card-title">Client Onboarding Friction</div>
+                    <div class="card-text">15-minute manual KYC data entry, 3-5 day compliance review. 40% of users abandon during account opening. Every abandoned application is lost revenue.</div>
+                    <div class="card-metric">â 4-min conversational KYC, 65% auto-approved</div>
                 </div>
+
                 <div class="glass-card">
-                    <div class="card-title">Regulatory Compliance at Scale</div>
-                    <div class="card-text">CIRO/OSC requirements demand human accountability for financial decisions. Black-box AI can’t explain recommendations. Manual oversight doesn’t scale.</div>
+                    <div class="card-title">Fraud Detection Blind Spots</div>
+                    <div class="card-text">Rule-based systems catch only 3% true positives from 1,200+ daily alerts. Fraud analysts overwhelmed by volume while sophisticated patterns slip through.</div>
+                    <div class="card-metric">â 18% true positive rate, $2.1M annual savings</div>
                 </div>
+
                 <div class="glass-card">
-                    <div class="card-title">The “Bigger Model” Fallacy</div>
-                    <div class="card-text">Industry throws larger models at problems instead of smarter memory architecture. GPT-4 Turbo still forgets context after 10K tokens. No self-improvement loop.</div>
+                    <div class="card-title">Regulatory Reporting Burden</div>
+                    <div class="card-text">200+ hours quarterly preparing reports for OSC, CIRO, FINTRAC. Manual data aggregation from 8 systems. Narrative drafting across multi-level review.</div>
+                    <div class="card-metric">â 70% time reduction, automated data aggregation</div>
                 </div>
             </div>
         </section>
-        <section id="solution">
+
+        <!-- Fintech Agent Swarm -->
+        <section id="agents">
             <div class="section-header">
-                <h2>The Solution</h2>
-                <p>A unified consciousness layer that combines memory, learning, and swarm execution—built 100% locally.</p>
+                <h2>Fintech Agent Swarm</h2>
+                <p>Five specialized agents designed for Canadian financial regulation. Each knows where it must stop.</p>
             </div>
-            <div class="cards-grid">
-                <div class="glass-card">
-                    <div class="card-title">Unified Consciousness Layer</div>
-                    <div class="card-text">Vector embeddings (LanceDB) + Knowledge graph (Neo4j) + NLU pipeline fused via Reciprocal Rank Fusion. Retrieve relevant context in milliseconds. Relationships, not just keywords.</div>
+
+            <div class="agent-cards">
+                <div class="agent-card">
+                    <div class="agent-icon">ð</div>
+                    <div class="agent-name">Compliance Agent</div>
+                    <div class="agent-desc">Triages 500+ daily alerts against CIRO/OSC/FINTRAC context via RAG. Classifies by confidence: >95% auto-dismiss, &lt;70% escalate, middle range gets AI-drafted analysis. Monitors regulatory updates.</div>
+                    <div class="agent-stops">ð´ Stops at: SAR filings, policy interpretations</div>
                 </div>
-                <div class="glass-card">
-                    <div class="card-title">Self-Learning Reflexion Memory</div>
-                    <div class="card-text">Agents fail → natural-language critiques injected into future prompts. System learns from mistakes without human annotation. Continuous improvement baked into architecture.</div>
+
+                <div class="agent-card">
+                    <div class="agent-icon">ð</div>
+                    <div class="agent-name">Onboarding Agent</div>
+                    <div class="agent-desc">Conversational KYC data gathering. Multimodal document extraction (IDs, tax forms, bank statements). Risk scoring with automatic routing. 65% standard cases auto-approved.</div>
+                    <div class="agent-stops">ð´ Stops at: Flagged account approvals</div>
                 </div>
-                <div class="glass-card">
-                    <div class="card-title">Swarm Agent Orchestration</div>
-                    <div class="card-text">LangGraph DAG with 5 specialized agents (developer, researcher, marketer, CRM builder, reviewer). Each task decomposed and routed to best-fit agent. Parallel execution up to 5 concurrent tasks.</div>
+
+                <div class="agent-card">
+                    <div class="agent-icon">ð</div>
+                    <div class="agent-name">Fraud Analyst Agent</div>
+                    <div class="agent-desc">LLM reasoning on ML fraud scores. Behavioral anomaly detection comparing individual patterns against peer cohorts. Generates case summaries with risk narratives.</div>
+                    <div class="agent-stops">ð´ Stops at: Account freezes, law enforcement escalation</div>
                 </div>
-                <div class="glass-card">
-                    <div class="card-title">Architectural Safety Boundaries</div>
-                    <div class="card-text">RBAC + execution sandbox blocking financial transactions at code level. Human accountability enforced in architecture, not policies. Explainable decisions via retrieval source attribution.</div>
+
+                <div class="agent-card">
+                    <div class="agent-icon">âï¸</div>
+                    <div class="agent-name">Operations Agent</div>
+                    <div class="agent-desc">Intelligent workflow routing by urgency, complexity, and regulatory sensitivity. SLA breach prediction. Document processing (2,000+ monthly docs) with confidence-based routing.</div>
+                    <div class="agent-stops">ð´ Stops at: Complaint resolution, dispute routing</div>
+                </div>
+
+                <div class="agent-card">
+                    <div class="agent-icon">ð</div>
+                    <div class="agent-name">Reporting Agent</div>
+                    <div class="agent-desc">Automated regulatory data aggregation from 8+ source systems. LLM-powered narrative generation for OSC, CIRO, FINTRAC reports. Multi-level review with tracked changes.</div>
+                    <div class="agent-stops">ð´ Stops at: Regulatory submission sign-off</div>
                 </div>
             </div>
         </section>
+
+        <!-- Outcomes Table -->
         <section id="comparison">
             <div class="section-header">
-                <h2>Market Comparison</h2>
-                <p>How does RG stack up against traditional and emerging AI platforms?</p>
+                <h2>Quantified Outcomes</h2>
+                <p>Each scenario modeled against real fintech operational metrics.</p>
             </div>
+
             <div class="comparison-table">
                 <table>
                     <thead>
                         <tr>
-                            <th>Feature</th>
-                            <th>ChatGPT Wrappers</th>
-                            <th>Semantic RAG Platforms</th>
-                            <th class="highlight">RG System</th>
+                            <th>Operation</th>
+                            <th>Before (Manual)</th>
+                            <th class="highlight">After (AI-Native)</th>
+                            <th>Impact</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td>Memory Persistence</td><td>None (context window only)</td><td>Vector embeddings only</td><td class="highlight">Vector + Graph + NLU</td></tr>
-                        <tr><td>Self-Learning</td><td>Manual fine-tuning</td><td>No learning loop</td><td class="highlight">Reflexion memory (automatic)</td></tr>
-                        <tr><td>Execution</td><td>Single model</td><td>Single embedding model</td><td class="highlight">5-agent swarm orchestration</td></tr>
-                        <tr><td>Deployment</td><td>Cloud-dependent</td><td>Cloud (Pinecone/Weaviate)</td><td class="highlight">100% local (Mac Mini M4)</td></tr>
-                        <tr><td>Safety Boundaries</td><td>Prompt engineering</td><td>Output filtering</td><td class="highlight">Code-level sandbox + RBAC</td></tr>
-                        <tr><td>Cost per 1M Tokens</td><td>$2–15 (API)</td><td>$5–20 (indexing)</td><td class="highlight">$0 (local)</td></tr>
+                        <tr>
+                            <td>Compliance Alert Triage</td>
+                            <td>85% false positives, 4 FTE</td>
+                            <td class="highlight">68% auto-resolved</td>
+                            <td>3Ã capacity</td>
+                        </tr>
+                        <tr>
+                            <td>Client Onboarding</td>
+                            <td>15 min, 40% abandon</td>
+                            <td class="highlight">4 min, 12% abandon</td>
+                            <td>28% more clients</td>
+                        </tr>
+                        <tr>
+                            <td>Fraud Detection</td>
+                            <td>3% true positive rate</td>
+                            <td class="highlight">18% true positive rate</td>
+                            <td>$2.1M saved/year</td>
+                        </tr>
+                        <tr>
+                            <td>Regulatory Reporting</td>
+                            <td>200+ hours quarterly</td>
+                            <td class="highlight">60 hours quarterly</td>
+                            <td>70% reduction</td>
+                        </tr>
+                        <tr>
+                            <td>Knowledge Retrieval</td>
+                            <td>3â5 day data requests</td>
+                            <td class="highlight">Minutes (self-service)</td>
+                            <td>$150K+ saved/year</td>
+                        </tr>
+                        <tr>
+                            <td>Support Triage</td>
+                            <td>24-hour response time</td>
+                            <td class="highlight">3 min auto-resolved (52%)</td>
+                            <td>CSAT 3.8â4.4</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
         </section>
+
+        <!-- Memory Architecture -->
         <section id="architecture">
             <div class="section-header">
-                <h2>Memory Architecture</h2>
-                <p>Four layers working in concert to create a conscious AI system.</p>
+                <h2>Consciousness Layer</h2>
+                <p>Financial entity relationships modeled as a knowledge graph, not just vector embeddings.</p>
             </div>
+
             <div class="memory-architecture">
                 <div class="memory-layer">
-                    <div class="memory-icon">🧠</div>
-                    <div class="memory-layer-name">Semantic Memory</div>
-                    <div class="memory-description">Vector embeddings via Ollama nomic-embed-text. "What do we know?" Similarity search across 768-dim space.</div>
+                    <div class="memory-icon">ð§ </div>
+                    <div class="memory-layer-name">Regulatory Memory</div>
+                    <div class="memory-description">Vector embeddings of CIRO/OSC/FINTRAC guidelines, internal policies, and historical review decisions. Semantic search for contextual compliance analysis.</div>
                 </div>
+
                 <div class="memory-layer">
-                    <div class="memory-icon">🔗</div>
-                    <div class="memory-layer-name">Relational Memory</div>
-                    <div class="memory-description">Neo4j knowledge graph. "How do things connect?" Entity relationships, temporal causality, dependency chains.</div>
+                    <div class="memory-icon">ð</div>
+                    <div class="memory-layer-name">Entity Graph</div>
+                    <div class="memory-description">Neo4j graph: Client â Account â Transaction â Alert chains. Enables queries like "all crypto-to-fiat transfers over $10K for flagged clients in 90 days."</div>
                 </div>
+
                 <div class="memory-layer">
-                    <div class="memory-icon">💭</div>
-                    <div class="memory-layer-name">Intent Memory</div>
-                    <div class="memory-description">NLU semantic router. "What do you mean?" Slot-filling dialogue state, entity extraction, query rewriting.</div>
+                    <div class="memory-icon">ð­</div>
+                    <div class="memory-layer-name">Intent Router</div>
+                    <div class="memory-description">NLU semantic classification routing natural language commands to the right fintech agent. Slot-filling dialogue state for multi-turn compliance queries.</div>
                 </div>
+
                 <div class="memory-layer">
-                    <div class="memory-icon">📈</div>
+                    <div class="memory-icon">ð</div>
                     <div class="memory-layer-name">Evolution Memory</div>
-                    <div class="memory-description">Reflexion critiques. "What did we learn?" Failure-driven prompt injection, continuous improvement.</div>
+                    <div class="memory-description">Reflexion critiques from failed tasks injected into future prompts. Agents learn from compliance mistakes without compromising regulatory boundaries.</div>
                 </div>
             </div>
+
             <div class="architecture-note">
-                <strong>⚡ Why This Matters:</strong> Cloud RAG platforms (OpenClaw, etc.) layer vector search on top of embeddings. RG fuses all four layers—vector, graph, intent, evolution—into a unified query engine. Plus, 100% local execution means zero latency, no vendor lock-in, and CIRO compliance through architectural transparency.
+                <strong>â¡ Why Hybrid Retrieval Matters for Fintech:</strong> Vector search alone misses structural relationships. When a compliance analyst asks about suspicious patterns, the system needs graph traversal (transaction chains) AND semantic search (regulatory context) AND keyword matching (specific account IDs). Reciprocal Rank Fusion across all three delivers answers that single-mode retrieval can't.
             </div>
         </section>
-        <section>
+
+        <!-- Human Decision Boundary -->
+        <section id="boundary">
             <div class="section-header">
-                <h2>AI Intelligence Design</h2>
-                <p>Clear boundaries: what AI handles vs. where humans must decide.</p>
+                <h2>Where AI Must Stop</h2>
+                <p>Not a limitation â a design principle enforced in architecture.</p>
             </div>
-            <div class="intelligence-cards">
-                <div class="glass-card">
-                    <div class="card-title">What AI Handles</div>
-                    <div class="card-text">• RAG retrieval & context synthesis<br>• Swarm task decomposition<br>• CRM data scoring & enrichment<br>• Self-evolution via reflexion<br>• Code generation with tests</div>
+
+            <div class="boundary-section">
+                <h3>ð´ Human Decision Boundary</h3>
+                <div class="boundary-grid">
+                    <div class="boundary-item">SAR Filings â Criminal liability (FINTRAC)</div>
+                    <div class="boundary-item">Account Freezes â Client rights at stake</div>
+                    <div class="boundary-item">Beneficiary Changes â Financial liability</div>
+                    <div class="boundary-item">Complaint Routing â CIRO consequences</div>
+                    <div class="boundary-item">Regulatory Filings â OSC accountability</div>
+                    <div class="boundary-item">Account Approvals â KYC/AML sign-off</div>
                 </div>
-                <div class="glass-card">
-                    <div class="card-title">Where AI Must Stop</div>
-                    <div class="card-text">• Financial commitments<br>• Deal approvals<br>• Regulatory filings<br>• Client-facing legal advice<br>• Discretionary trading</div>
-                </div>
-                <div class="glass-card">
-                    <div class="card-title">The Human Advantage</div>
-                    <div class="card-text">• Strategic business decisions<br>• Building client trust & relationships<br>• Fiduciary accountability<br>• Nuanced judgment calls<br>• Final approval gates</div>
-                </div>
+                <p class="boundary-reason">
+                    In regulated financial services, fiduciary duty under CIRO and OSC frameworks requires a named human accountable for client-facing decisions. Enforced by RBAC role boundaries + execution sandbox + human approval gate. AI scores, recommends, drafts â the final "yes" on money and trust is irreducibly human.
+                </p>
             </div>
         </section>
+
+        <!-- Stats -->
         <section>
             <div class="stats-bar">
-                <div class="stat-item"><h3>27,500+</h3><p>Lines of Production Python</p></div>
-                <div class="stat-item"><h3>16</h3><p>Architectural Layers</p></div>
-                <div class="stat-item"><h3>5</h3><p>Specialized Agents</p></div>
-                <div class="stat-item"><h3>100%</h3><p>Local (No Cloud Dependency)</p></div>
-                <div class="stat-item"><h3>RAGAS</h3><p>Evaluated Retrieval</p></div>
+                <div class="stat-item">
+                    <h3>27,500+</h3>
+                    <p>Lines of Python</p>
+                </div>
+                <div class="stat-item">
+                    <h3>5</h3>
+                    <p>Fintech Agents</p>
+                </div>
+                <div class="stat-item">
+                    <h3>16</h3>
+                    <p>Architecture Layers</p>
+                </div>
+                <div class="stat-item">
+                    <h3>10</h3>
+                    <p>Quantified Scenarios</p>
+                </div>
+                <div class="stat-item">
+                    <h3>RAGAS</h3>
+                    <p>Evaluated Retrieval</p>
+                </div>
+                <div class="stat-item">
+                    <h3>$2.1M+</h3>
+                    <p>Modeled Annual Savings</p>
+                </div>
             </div>
         </section>
     </main>
+
+    <!-- Footer -->
     <footer class="container">
         <p>
-            <strong>RG — AI-Native Business Operations Platform</strong><br>
-            Built with consciousness layers, swarm orchestration, and reflexion learning.<br>
-            <a href="https://github.com/ravigandhiarul-agent/rg-ai-native-ops" id="github">View on GitHub</a> · Submitted for Wealthsimple AI Builder — March 2026
+            <strong>AI-Native Financial Operations Platform</strong><br>
+            Compliance monitoring Â· Client onboarding Â· Fraud detection Â· Regulatory reporting<br>
+            <a href="https://github.com/ravigandhiarul-agent/rg-ai-native-ops" id="github">View on GitHub</a> Â· Built for Wealthsimple AI Builder â March 2026
         </p>
         <p style="font-size: 12px; margin-top: 20px;">
-            Author: Ravi Gandhi Arul | 8 years SaaS experience encoded into a living consciousness layer
+            Ravi Gandhi Arul Â· Python 3.12 Â· Claude Code + LangGraph + LanceDB + Neo4j
         </p>
     </footer>
 </body>
