@@ -338,7 +338,51 @@
         .boundary-section h3 {
             font-size: 24px;
             font-weight: 700;
-            color: #FF833tc°¢Ö&vâÖ&÷GFöÓ¢#°¢Ð ¢æ&÷VæF'Öw&B°¢F7Æ¢w&C°¢w&B×FV×ÆFRÖ6öÇVÖç3¢&WVBWFòÖfBÂÖæÖ#Âg"°¢v¢g°¢Ö&vâÖ&÷GFöÓ¢#°¢Ð ¢æ&÷VæF'ÖFVÒ°¢föçB×6¦S¢G°¢FFæs¢'°¢&6¶w&÷VæC¢&v&#SRÂcÂcÂã°¢&÷&FW"×&FW3¢°¢6öÆ÷#¢6SSS°¢Ð ¢æ&÷VæF'×&V6öâ°¢föçB×6¦S¢7°¢6öÆ÷#¢6###°¢Ö×vGF¢s°¢Ö&vã¢WFó°¢ÆæRÖVvC¢ãc°¢Ð ¢ò¢7FG2&"¢ð¢ç7FG2Ö&"°¢&6¶w&÷VæC¢&v&#SRÂ#SRÂ#SRÂã°¢&÷&FW#¢6öÆB&v&#SRÂ#SRÂ#SRÂãR°¢&6¶G&÷ÖfÇFW#¢&ÇW"g°¢&÷&FW"×&FW3¢'°¢FFæs¢C°¢F7Æ¢w&C°¢w&B×FV×ÆFRÖ6öÇVÖç3¢&WVBWFòÖfBÂÖæÖÂg"°¢v¢C°¢Ö&vâÖ&÷GFöÓ¢°¢FWBÖÆvã¢6VçFW#°¢Ð ¢ç7FBÖFVÒ2°¢föçB×6¦S¢#°¢föçB×vVvC¢s°¢&6¶w&÷VæC¢ÆæV"Öw&FVçBFVrÂ4dc9S7F 0%, #9B5DE5 100%);
+            color: #FF837F;
+            margin-bottom: 20px;
+        }
+
+        .boundary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .boundary-item {
+            font-size: 14px;
+            padding: 12px;
+            background: rgba(255, 60, 60, 0.08);
+            border-radius: 8px;
+            color: #e0e0e0;
+        }
+
+        .boundary-reason {
+            font-size: 13px;
+            color: #b0b0b0;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Stats Bar */
+        .stats-bar {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(16px);
+            border-radius: 12px;
+            padding: 40px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 40px;
+            margin-bottom: 80px;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(90deg, #FF837F 0%, #9B5DE5 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -445,25 +489,25 @@
                 <div class="glass-card">
                     <div class="card-title">Compliance Alert Overload</div>
                     <div class="card-text">500+ daily transaction alerts, 85% are false positives. Each review takes 8-12 minutes, consuming 4 FTE analysts full-time. Sophisticated patterns get missed in the noise.</div>
-                    <div class="card-metric">â 68% auto-resolved, analysts focus on true positives</div>
+                    <div class="card-metric">→ 68% auto-resolved, analysts focus on true positives</div>
                 </div>
 
                 <div class="glass-card">
                     <div class="card-title">Client Onboarding Friction</div>
                     <div class="card-text">15-minute manual KYC data entry, 3-5 day compliance review. 40% of users abandon during account opening. Every abandoned application is lost revenue.</div>
-                    <div class="card-metric">â 4-min conversational KYC, 65% auto-approved</div>
+                    <div class="card-metric">→ 4-min conversational KYC, 65% auto-approved</div>
                 </div>
 
                 <div class="glass-card">
                     <div class="card-title">Fraud Detection Blind Spots</div>
                     <div class="card-text">Rule-based systems catch only 3% true positives from 1,200+ daily alerts. Fraud analysts overwhelmed by volume while sophisticated patterns slip through.</div>
-                    <div class="card-metric">â 18% true positive rate, $2.1M annual savings</div>
+                    <div class="card-metric">→ 18% true positive rate, $2.1M annual savings</div>
                 </div>
 
                 <div class="glass-card">
                     <div class="card-title">Regulatory Reporting Burden</div>
                     <div class="card-text">200+ hours quarterly preparing reports for OSC, CIRO, FINTRAC. Manual data aggregation from 8 systems. Narrative drafting across multi-level review.</div>
-                    <div class="card-metric">â 70% time reduction, automated data aggregation</div>
+                    <div class="card-metric">→ 70% time reduction, automated data aggregation</div>
                 </div>
             </div>
         </section>
@@ -477,38 +521,38 @@
 
             <div class="agent-cards">
                 <div class="agent-card">
-                    <div class="agent-icon">ð</div>
+                    <div class="agent-icon">🏛</div>
                     <div class="agent-name">Compliance Agent</div>
                     <div class="agent-desc">Triages 500+ daily alerts against CIRO/OSC/FINTRAC context via RAG. Classifies by confidence: >95% auto-dismiss, &lt;70% escalate, middle range gets AI-drafted analysis. Monitors regulatory updates.</div>
-                    <div class="agent-stops">ð´ Stops at: SAR filings, policy interpretations</div>
+                    <div class="agent-stops">🔴 Stops at: SAR filings, policy interpretations</div>
                 </div>
 
                 <div class="agent-card">
-                    <div class="agent-icon">ð</div>
+                    <div class="agent-icon">📋</div>
                     <div class="agent-name">Onboarding Agent</div>
                     <div class="agent-desc">Conversational KYC data gathering. Multimodal document extraction (IDs, tax forms, bank statements). Risk scoring with automatic routing. 65% standard cases auto-approved.</div>
-                    <div class="agent-stops">ð´ Stops at: Flagged account approvals</div>
+                    <div class="agent-stops">🔴 Stops at: Flagged account approvals</div>
                 </div>
 
                 <div class="agent-card">
-                    <div class="agent-icon">ð</div>
+                    <div class="agent-icon">🔍</div>
                     <div class="agent-name">Fraud Analyst Agent</div>
                     <div class="agent-desc">LLM reasoning on ML fraud scores. Behavioral anomaly detection comparing individual patterns against peer cohorts. Generates case summaries with risk narratives.</div>
-                    <div class="agent-stops">ð´ Stops at: Account freezes, law enforcement escalation</div>
+                    <div class="agent-stops">🔴 Stops at: Account freezes, law enforcement escalation</div>
                 </div>
 
                 <div class="agent-card">
-                    <div class="agent-icon">âï¸</div>
+                    <div class="agent-icon">⚙️</div>
                     <div class="agent-name">Operations Agent</div>
                     <div class="agent-desc">Intelligent workflow routing by urgency, complexity, and regulatory sensitivity. SLA breach prediction. Document processing (2,000+ monthly docs) with confidence-based routing.</div>
-                    <div class="agent-stops">ð´ Stops at: Complaint resolution, dispute routing</div>
+                    <div class="agent-stops">🔴 Stops at: Complaint resolution, dispute routing</div>
                 </div>
 
                 <div class="agent-card">
-                    <div class="agent-icon">ð</div>
+                    <div class="agent-icon">📊</div>
                     <div class="agent-name">Reporting Agent</div>
                     <div class="agent-desc">Automated regulatory data aggregation from 8+ source systems. LLM-powered narrative generation for OSC, CIRO, FINTRAC reports. Multi-level review with tracked changes.</div>
-                    <div class="agent-stops">ð´ Stops at: Regulatory submission sign-off</div>
+                    <div class="agent-stops">🔴 Stops at: Regulatory submission sign-off</div>
                 </div>
             </div>
         </section>
@@ -535,7 +579,7 @@
                             <td>Compliance Alert Triage</td>
                             <td>85% false positives, 4 FTE</td>
                             <td class="highlight">68% auto-resolved</td>
-                            <td>3Ã capacity</td>
+                            <td>3× capacity</td>
                         </tr>
                         <tr>
                             <td>Client Onboarding</td>
@@ -557,7 +601,7 @@
                         </tr>
                         <tr>
                             <td>Knowledge Retrieval</td>
-                            <td>3â5 day data requests</td>
+                            <td>3–5 day data requests</td>
                             <td class="highlight">Minutes (self-service)</td>
                             <td>$150K+ saved/year</td>
                         </tr>
@@ -565,7 +609,7 @@
                             <td>Support Triage</td>
                             <td>24-hour response time</td>
                             <td class="highlight">3 min auto-resolved (52%)</td>
-                            <td>CSAT 3.8â4.4</td>
+                            <td>CSAT 3.8→4.4</td>
                         </tr>
                     </tbody>
                 </table>
@@ -581,32 +625,32 @@
 
             <div class="memory-architecture">
                 <div class="memory-layer">
-                    <div class="memory-icon">ð§ </div>
+                    <div class="memory-icon">🧠</div>
                     <div class="memory-layer-name">Regulatory Memory</div>
                     <div class="memory-description">Vector embeddings of CIRO/OSC/FINTRAC guidelines, internal policies, and historical review decisions. Semantic search for contextual compliance analysis.</div>
                 </div>
 
                 <div class="memory-layer">
-                    <div class="memory-icon">ð</div>
+                    <div class="memory-icon">🔗</div>
                     <div class="memory-layer-name">Entity Graph</div>
-                    <div class="memory-description">Neo4j graph: Client â Account â Transaction â Alert chains. Enables queries like "all crypto-to-fiat transfers over $10K for flagged clients in 90 days."</div>
+                    <div class="memory-description">Neo4j graph: Client → Account → Transaction → Alert chains. Enables queries like "all crypto-to-fiat transfers over $10K for flagged clients in 90 days."</div>
                 </div>
 
                 <div class="memory-layer">
-                    <div class="memory-icon">ð­</div>
+                    <div class="memory-icon">💭</div>
                     <div class="memory-layer-name">Intent Router</div>
                     <div class="memory-description">NLU semantic classification routing natural language commands to the right fintech agent. Slot-filling dialogue state for multi-turn compliance queries.</div>
                 </div>
 
                 <div class="memory-layer">
-                    <div class="memory-icon">ð</div>
+                    <div class="memory-icon">📈</div>
                     <div class="memory-layer-name">Evolution Memory</div>
                     <div class="memory-description">Reflexion critiques from failed tasks injected into future prompts. Agents learn from compliance mistakes without compromising regulatory boundaries.</div>
                 </div>
             </div>
 
             <div class="architecture-note">
-                <strong>â¡ Why Hybrid Retrieval Matters for Fintech:</strong> Vector search alone misses structural relationships. When a compliance analyst asks about suspicious patterns, the system needs graph traversal (transaction chains) AND semantic search (regulatory context) AND keyword matching (specific account IDs). Reciprocal Rank Fusion across all three delivers answers that single-mode retrieval can't.
+                <strong>⚡ Why Hybrid Retrieval Matters for Fintech:</strong> Vector search alone misses structural relationships. When a compliance analyst asks about suspicious patterns, the system needs graph traversal (transaction chains) AND semantic search (regulatory context) AND keyword matching (specific account IDs). Reciprocal Rank Fusion across all three delivers answers that single-mode retrieval can't.
             </div>
         </section>
 
@@ -614,21 +658,21 @@
         <section id="boundary">
             <div class="section-header">
                 <h2>Where AI Must Stop</h2>
-                <p>Not a limitation â a design principle enforced in architecture.</p>
+                <p>Not a limitation — a design principle enforced in architecture.</p>
             </div>
 
             <div class="boundary-section">
-                <h3>ð´ Human Decision Boundary</h3>
+                <h3>🔴 Human Decision Boundary</h3>
                 <div class="boundary-grid">
-                    <div class="boundary-item">SAR Filings â Criminal liability (FINTRAC)</div>
-                    <div class="boundary-item">Account Freezes â Client rights at stake</div>
-                    <div class="boundary-item">Beneficiary Changes â Financial liability</div>
-                    <div class="boundary-item">Complaint Routing â CIRO consequences</div>
-                    <div class="boundary-item">Regulatory Filings â OSC accountability</div>
-                    <div class="boundary-item">Account Approvals â KYC/AML sign-off</div>
+                    <div class="boundary-item">SAR Filings → Criminal liability (FINTRAC)</div>
+                    <div class="boundary-item">Account Freezes → Client rights at stake</div>
+                    <div class="boundary-item">Beneficiary Changes → Financial liability</div>
+                    <div class="boundary-item">Complaint Routing → CIRO consequences</div>
+                    <div class="boundary-item">Regulatory Filings → OSC accountability</div>
+                    <div class="boundary-item">Account Approvals → KYC/AML sign-off</div>
                 </div>
                 <p class="boundary-reason">
-                    In regulated financial services, fiduciary duty under CIRO and OSC frameworks requires a named human accountable for client-facing decisions. Enforced by RBAC role boundaries + execution sandbox + human approval gate. AI scores, recommends, drafts â the final "yes" on money and trust is irreducibly human.
+                    In regulated financial services, fiduciary duty under CIRO and OSC frameworks requires a named human accountable for client-facing decisions. Enforced by RBAC role boundaries + execution sandbox + human approval gate. AI scores, recommends, drafts — the final "yes" on money and trust is irreducibly human.
                 </p>
             </div>
         </section>
@@ -639,7 +683,7 @@
                 <div class="stat-item">
                     <h3>27,500+</h3>
                     <p>Lines of Python</p>
-                </div>
+                    </div>
                 <div class="stat-item">
                     <h3>5</h3>
                     <p>Fintech Agents</p>
@@ -668,11 +712,11 @@
     <footer class="container">
         <p>
             <strong>AI-Native Financial Operations Platform</strong><br>
-            Compliance monitoring Â· Client onboarding Â· Fraud detection Â· Regulatory reporting<br>
-            <a href="https://github.com/ravigandhiarul-agent/rg-ai-native-ops" id="github">View on GitHub</a> Â· Built for Wealthsimple AI Builder â March 2026
+            Compliance monitoring · Client onboarding · Fraud detection · Regulatory reporting<br>
+            <a href="https://github.com/ravigandhiarul-agent/rg-ai-native-ops" id="github">View on GitHub</a> · Built for Wealthsimple AI Builder — March 2026
         </p>
         <p style="font-size: 12px; margin-top: 20px;">
-            Ravi Gandhi Arul Â· Python 3.12 Â· Claude Code + LangGraph + LanceDB + Neo4j
+            Ravi Gandhi Arul · Python 3.12 · Claude Code + LangGraph + LanceDB + Neo4j
         </p>
     </footer>
 </body>
