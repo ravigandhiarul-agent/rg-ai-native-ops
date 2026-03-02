@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RG: AI-Native Business Operations Platform</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { font-family: 'Inter', sans-serif; background: linear-gradient(135deg, #0a0e17 0%, #1a1f2e 100%); color: #e0e0e0; overflow-x: hidden; min-height: 100vh; }
+        body::before { content: ''; position: fixed; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle at 20% 30%, rgba(255, 131, 127, 0.08) 0%, transparent 50%), radial-gradient(circle at 80% 70%, rgba(155, 93, 229, 0.08) 0%, transparent 50%), radial-gradient(circle at 60% 20%, rgba(0, 210, 255, 0.06) 0%, transparent 50%); pointer-events: none; z-index: 0; animation: float-orbs 20s ease-in-out infinite; }
+        @keyframes float-orbs { 0%, 100% { transform: translate(0, 0); } 25% { transform: translate(20px, -30px); } 50% { transform: translate(-10px, 20px); } 75% { transform: translate(30px, 10px); } }
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 1; }
+        header { display: flex; justify-content: space-between; align-items: center; padding: 24px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
+        .logo { font-size: 24px; font-weight: 700; background: linear-gradient(90deg, #FF837F 0%, #FF7600 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        nav a { color: #a0a0a0; text-decoration: none; margin-left: 32px; font-size: 14px; transition: color 0.3s ease; }
+        nav a:hover { color: #FF837F; }
+        .hero { text-align: center; padding: 80px 0 60px; }
+        .hero h1 { font-size: 56px; font-weight: 700; margin-bottom: 16px; line-height: 1.2; }
+        .hero .tagline { font-size: 20px; color: #b0b0b0; margin-bottom: 8px; }
+        .hero .subtitle { font-size: 16px; color: #FF837F; font-weight: 600; margin-bottom: 32px; }
+        .hero .author { font-size: 14px; color: #808080; font-style: italic; }
+        .section-header { text-align: center; margin-bottom: 60px; padding-top: 80px; }
+        .section-header h2 { font-size: 40px; font-weight: 700; margin-bottom: 12px; }
+        .section-header p { font-size: 16px; color: #b0b0b0; max-width: 600px; margin: 0 auto; }
+        .glass-card { background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); backdrop-filter: blur(16px); border-radius: 12px; padding: 32px; transition: all 0.3s ease; cursor: pointer; }
+        .glass-card:hover { background: rgba(255, 255, 255, 0.12); border-color: rgba(255, 255, 255, 0.25); transform: translateY(-4px); box-shadow: 0 20px 40px rgba(255, 131, 127, 0.1); }
+        .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; margin-bottom: 60px; }
+        .card-title { font-size: 18px; font-weight: 600; margin-bottom: 12px; background: linear-gradient(90deg, #FF837F 0%, #9B5DE5 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .card-text { font-size: 14px; line-height: 1.6; color: #c0c0c0; }
+        .comparison-table { margin-bottom: 80px; overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; }
+        th { text-align: left; padding: 16px; border-bottom: 2px solid rgba(255, 255, 255, 0.15); font-weight: 600; background: rgba(255, 255, 255, 0.05); }
+        td { padding: 16px; border-bottom: 1px solid rgba(255, 255, 255, 0.08); font-size: 14px; }
+        tr:hover { background: rgba(255, 255, 255, 0.06); }
+        .highlight { background: linear-gradient(90deg, #FF837F 0%, #FF7600 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 600; }
+        .memory-architecture { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px; margin-bottom: 60px; }
+        .memory-layer { background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); backdrop-filter: blur(16px); border-radius: 12px; padding: 28px; text-align: center; }
+        .memory-icon { font-size: 32px; margin-bottom: 12px; }
+        .memory-layer-name { font-size: 16px; font-weight: 600; margin-bottom: 8px; background: linear-gradient(90deg, #00D2FF 0%, #3A7BD5 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .memory-description { font-size: 13px; line-height: 1.5; color: #b0b0b0; }
+        .architecture-note { background: rgba(255, 131, 127, 0.1); border: 1px solid rgba(255, 131, 127, 0.3); border-radius: 8px; padding: 20px; margin-top: 40px; font-size: 13px; line-height: 1.6; color: #d0d0d0; }
+        .intelligence-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-bottom: 80px; }
+        .stats-bar { background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); backdrop-filter: blur(16px); border-radius: 12px; padding: 40px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; margin-bottom: 80px; text-align: center; }
+        .stat-item h3 { font-size: 28px; font-weight: 700; background: linear-gradient(90deg, #FF837F 0%, #9B5DE5 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 8px; }
+        .stat-item p { font-size: 13px; color: #a0a0a0; }
+        footer { border-top: 1px solid rgba(255, 255, 255, 0.08); padding: 60px 0 40px; text-align: center; }
+        footer p { font-size: 13px; color: #808080; margin-bottom: 16px; line-height: 1.6; }
+        footer a { color: #FF837F; text-decoration: none; transition: color 0.3s ease; }
+        footer a:hover { color: #FF7600; }
+        @media (max-width: 768px) { .hero h1 { font-size: 36px; } .hero .tagline { font-size: 16px; } .section-header h2 { font-size: 28px; } nav { display: none; } .stats-bar { grid-template-columns: repeat(2, 1fr); padding: 24px; } header { justify-content: center; } }
+        code { font-family: 'JetBrains Mono', monospace; background: rgba(255, 255, 255, 0.05); padding: 2px 6px; border-radius: 4px; font-size: 12px; color: #FFB86C; }
+    </style>
+</head><body>
+    <header class="container">
+        <div class="logo">RG</div>
+        <nav>
+            <a href="#problem">Problem</a>
+            <a href="#solution">Solution</a>
+            <a href="#architecture">Architecture</a>
+            <a href="#github">GitHub</a>
+        </nav>
+    </header>
+    <main class="container">
+        <section class="hero">
+            <h1>AI-Native Business Operations</h1>
+            <p class="tagline">Replace fragmented AI tools with a unified consciousness layer that learns, remembers, and executes.</p>
+            <p class="subtitle">Built for Wealthsimple</p>
+            <p class="author">by Ravi Gandhi Arul</p>
+        </section>
+        <section id="problem">
+            <div class="section-header">
+                <h2>The Problem</h2>
+                <p>Wealth advisors switching between tools, losing context, while AI lacks memory and learning.</p>
+            </div>
+            <div class="cards-grid">
+                <div class="glass-card">
+                    <div class="card-title">Fragmented Client Context</div>
+                    <div class="card-text">Wealth advisors switch between 5+ tools daily—CRM, email, spreadsheets, chat, analytics. Each context switch costs time and introduces errors. Client history scattered across systems.</div>
+                </div>
+                <div class="glass-card">
+                    <div class="card-title">Knowledge Silos Across Products</div>
+                    <div class="card-text">Institutional knowledge trapped in individual heads. When advisors leave, years of relationship context vanishes. No way to surface learnings across teams.</div>
+                </div>
+                <div class="glass-card">
+                    <div class="card-title">Regulatory Compliance at Scale</div>
+                    <div class="card-text">CIRO/OSC requirements demand human accountability for financial decisions. Black-box AI can’t explain recommendations. Manual oversight doesn’t scale.</div>
+                </div>
+                <div class="glass-card">
+                    <div class="card-title">The “Bigger Model” Fallacy</div>
+                    <div class="card-text">Industry throws larger models at problems instead of smarter memory architecture. GPT-4 Turbo still forgets context after 10K tokens. No self-improvement loop.</div>
+                </div>
+            </div>
+        </section>
+        <section id="solution">
+            <div class="section-header">
+                <h2>The Solution</h2>
+                <p>A unified consciousness layer that combines memory, learning, and swarm execution—built 100% locally.</p>
+            </div>
+            <div class="cards-grid">
+                <div class="glass-card">
+                    <div class="card-title">Unified Consciousness Layer</div>
+                    <div class="card-text">Vector embeddings (LanceDB) + Knowledge graph (Neo4j) + NLU pipeline fused via Reciprocal Rank Fusion. Retrieve relevant context in milliseconds. Relationships, not just keywords.</div>
+                </div>
+                <div class="glass-card">
+                    <div class="card-title">Self-Learning Reflexion Memory</div>
+                    <div class="card-text">Agents fail → natural-language critiques injected into future prompts. System learns from mistakes without human annotation. Continuous improvement baked into architecture.</div>
+                </div>
+                <div class="glass-card">
+                    <div class="card-title">Swarm Agent Orchestration</div>
+                    <div class="card-text">LangGraph DAG with 5 specialized agents (developer, researcher, marketer, CRM builder, reviewer). Each task decomposed and routed to best-fit agent. Parallel execution up to 5 concurrent tasks.</div>
+                </div>
+                <div class="glass-card">
+                    <div class="card-title">Architectural Safety Boundaries</div>
+                    <div class="card-text">RBAC + execution sandbox blocking financial transactions at code level. Human accountability enforced in architecture, not policies. Explainable decisions via retrieval source attribution.</div>
+                </div>
+            </div>
+        </section>
+        <section id="comparison">
+            <div class="section-header">
+                <h2>Market Comparison</h2>
+                <p>How does RG stack up against traditional and emerging AI platforms?</p>
+            </div>
+            <div class="comparison-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>ChatGPT Wrappers</th>
+                            <th>Semantic RAG Platforms</th>
+                            <th class="highlight">RG System</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Memory Persistence</td><td>None (context window only)</td><td>Vector embeddings only</td><td class="highlight">Vector + Graph + NLU</td></tr>
+                        <tr><td>Self-Learning</td><td>Manual fine-tuning</td><td>No learning loop</td><td class="highlight">Reflexion memory (automatic)</td></tr>
+                        <tr><td>Execution</td><td>Single model</td><td>Single embedding model</td><td class="highlight">5-agent swarm orchestration</td></tr>
+                        <tr><td>Deployment</td><td>Cloud-dependent</td><td>Cloud (Pinecone/Weaviate)</td><td class="highlight">100% local (Mac Mini M4)</td></tr>
+                        <tr><td>Safety Boundaries</td><td>Prompt engineering</td><td>Output filtering</td><td class="highlight">Code-level sandbox + RBAC</td></tr>
+                        <tr><td>Cost per 1M Tokens</td><td>$2–15 (API)</td><td>$5–20 (indexing)</td><td class="highlight">$0 (local)</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <section id="architecture">
+            <div class="section-header">
+                <h2>Memory Architecture</h2>
+                <p>Four layers working in concert to create a conscious AI system.</p>
+            </div>
+            <div class="memory-architecture">
+                <div class="memory-layer">
+                    <div class="memory-icon">🧠</div>
+                    <div class="memory-layer-name">Semantic Memory</div>
+                    <div class="memory-description">Vector embeddings via Ollama nomic-embed-text. "What do we know?" Similarity search across 768-dim space.</div>
+                </div>
+                <div class="memory-layer">
+                    <div class="memory-icon">🔗</div>
+                    <div class="memory-layer-name">Relational Memory</div>
+                    <div class="memory-description">Neo4j knowledge graph. "How do things connect?" Entity relationships, temporal causality, dependency chains.</div>
+                </div>
+                <div class="memory-layer">
+                    <div class="memory-icon">💭</div>
+                    <div class="memory-layer-name">Intent Memory</div>
+                    <div class="memory-description">NLU semantic router. "What do you mean?" Slot-filling dialogue state, entity extraction, query rewriting.</div>
+                </div>
+                <div class="memory-layer">
+                    <div class="memory-icon">📈</div>
+                    <div class="memory-layer-name">Evolution Memory</div>
+                    <div class="memory-description">Reflexion critiques. "What did we learn?" Failure-driven prompt injection, continuous improvement.</div>
+                </div>
+            </div>
+            <div class="architecture-note">
+                <strong>⚡ Why This Matters:</strong> Cloud RAG platforms (OpenClaw, etc.) layer vector search on top of embeddings. RG fuses all four layers—vector, graph, intent, evolution—into a unified query engine. Plus, 100% local execution means zero latency, no vendor lock-in, and CIRO compliance through architectural transparency.
+            </div>
+        </section>
+        <section>
+            <div class="section-header">
+                <h2>AI Intelligence Design</h2>
+                <p>Clear boundaries: what AI handles vs. where humans must decide.</p>
+            </div>
+            <div class="intelligence-cards">
+                <div class="glass-card">
+                    <div class="card-title">What AI Handles</div>
+                    <div class="card-text">• RAG retrieval & context synthesis<br>• Swarm task decomposition<br>• CRM data scoring & enrichment<br>• Self-evolution via reflexion<br>• Code generation with tests</div>
+                </div>
+                <div class="glass-card">
+                    <div class="card-title">Where AI Must Stop</div>
+                    <div class="card-text">• Financial commitments<br>• Deal approvals<br>• Regulatory filings<br>• Client-facing legal advice<br>• Discretionary trading</div>
+                </div>
+                <div class="glass-card">
+                    <div class="card-title">The Human Advantage</div>
+                    <div class="card-text">• Strategic business decisions<br>• Building client trust & relationships<br>• Fiduciary accountability<br>• Nuanced judgment calls<br>• Final approval gates</div>
+                </div>
+            </div>
+        </section>
+        <section>
+            <div class="stats-bar">
+                <div class="stat-item"><h3>27,500+</h3><p>Lines of Production Python</p></div>
+                <div class="stat-item"><h3>16</h3><p>Architectural Layers</p></div>
+                <div class="stat-item"><h3>5</h3><p>Specialized Agents</p></div>
+                <div class="stat-item"><h3>100%</h3><p>Local (No Cloud Dependency)</p></div>
+                <div class="stat-item"><h3>RAGAS</h3><p>Evaluated Retrieval</p></div>
+            </div>
+        </section>
+    </main>
+    <footer class="container">
+        <p>
+            <strong>RG — AI-Native Business Operations Platform</strong><br>
+            Built with consciousness layers, swarm orchestration, and reflexion learning.<br>
+            <a href="https://github.com/ravigandhiarul-agent/rg-ai-native-ops" id="github">View on GitHub</a> · Submitted for Wealthsimple AI Builder — March 2026
+        </p>
+        <p style="font-size: 12px; margin-top: 20px;">
+            Author: Ravi Gandhi Arul | 8 years SaaS experience encoded into a living consciousness layer
+        </p>
+    </footer>
+</body>
+</html>
